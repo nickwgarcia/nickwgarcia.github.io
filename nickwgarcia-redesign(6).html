@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick W. Garcia — Video & Photo for Skilled Trades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14171c;
+    --panel: #1b1f26;
+    --panel-2: #21262f;
+    --paper: #f2efe9;
+    --amber: #e8a33d;
+    --amber-dim: #b9812e;
+    --slate: #8a8f98;
+    --line: rgba(242,239,233,0.12);
+    --maxw: 1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue',sans-serif;
+    letter-spacing:0.02em;
+    line-height:0.95;
+    font-weight:400;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+
+  /* ===== Reveal on scroll ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ===== Nav ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;
+    background:linear-gradient(to bottom, rgba(20,23,28,0.92), rgba(20,23,28,0));
+    transition:background .3s ease, padding .3s ease;
+  }
+  header.scrolled{
+    background:rgba(20,23,28,0.88);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;}
+  .navlinks{display:flex;align-items:center;gap:36px;}
+  .navlinks a.link{
+    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--slate);font-family:'IBM Plex Mono',monospace;
+    transition:color .2s ease;
+  }
+  .navlinks a.link:hover{color:var(--paper);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;
+    background:var(--amber);
+    color:#14171c;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+    border:1px solid var(--amber);
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:transparent;color:var(--amber);transform:translateY(-1px);}
+  .btn-outline{
+    background:transparent;color:var(--paper);border:1px solid var(--line);
+  }
+  .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:120px;
+    padding-bottom:90px;
+  }
+  .letterbox-top, .letterbox-bottom{
+    position:absolute;left:0;right:0;height:38px;background:#0c0e11;z-index:5;
+  }
+  .letterbox-top{top:0;}
+  .letterbox-bottom{bottom:0;}
+  .hero-bg{
+    position:absolute;inset:38px 0;
+    background:
+      linear-gradient(180deg, rgba(20,23,28,0.35) 0%, rgba(20,23,28,0.55) 55%, rgba(20,23,28,0.96) 100%),
+      url('https://images.squarespace-cdn.com/content/v1/69c9c242363ac14fde4e6078/b0357c79-5cf5-43a2-90db-5e4e3e8be2c1/Living_Air_Design_AI.jpg') center 30%/cover no-repeat;
+    z-index:0;
+  }
+  .hero-content{position:relative;z-index:2;}
+  .eyebrow{
+    font-size:12px;color:var(--amber);margin-bottom:22px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--amber);display:inline-block;}
+  .hero h1{
+    font-size:clamp(48px, 8.4vw, 118px);
+    max-width:920px;
+    text-transform:uppercase;
+    color:var(--paper);
+  }
+  .hero h1 em{font-style:normal;color:var(--amber);}
+  .hero-sub{
+    max-width:520px;
+    margin-top:26px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--slate);
+  }
+  .hero-actions{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-meta{
+    position:relative;z-index:2;
+    display:flex;gap:40px;margin-top:76px;
+    padding-top:26px;border-top:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .hero-meta div{font-size:11px;color:var(--slate);}
+  .hero-meta strong{display:block;color:var(--paper);font-size:13px;margin-top:6px;font-weight:600;}
+
+  /* ===== Section shell ===== */
+  section{padding:110px 0;position:relative;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px;flex-wrap:wrap;}
+  .section-tag{font-size:12px;color:var(--amber);margin-bottom:14px;}
+  .section-tag::before{content:'/// ';color:var(--amber-dim);}
+  h2.section-title{font-size:clamp(34px,5vw,58px);text-transform:uppercase;max-width:640px;}
+  .section-desc{max-width:360px;color:var(--slate);font-size:15px;line-height:1.6;}
+
+  /* ===== About ===== */
+  .about{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
+  .about-photo{position:relative;}
+  .about-photo img{
+    width:100%;aspect-ratio:4/5;object-fit:cover;
+    filter:grayscale(15%) contrast(1.05);
+  }
+  .about-photo .frame-tag{
+    position:absolute;bottom:16px;left:16px;
+    font-size:10px;background:rgba(20,23,28,0.8);padding:6px 10px;
+    color:var(--amber);border:1px solid var(--line);
+  }
+  .about-body p{font-size:17px;line-height:1.75;color:var(--paper);margin-bottom:20px;max-width:520px;}
+  .about-body p.dim{color:var(--slate);}
+  .about-stats{display:flex;gap:48px;margin-top:36px;}
+  .about-stats div strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--amber);}
+  .about-stats div span{font-size:11px;color:var(--slate);}
+
+  /* ===== Services (call sheet) ===== */
+  .callsheet{border:1px solid var(--line);}
+  .cs-row{
+    display:grid;grid-template-columns:70px 1.1fr 1.6fr 90px;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  .cs-row:last-child{border-bottom:none;}
+  .cs-row.head{background:var(--panel);}
+  .cs-row.head div{font-size:11px;color:var(--amber-dim);padding:16px 20px;}
+  .cs-row:not(.head){transition:background .2s ease;}
+  .cs-row:not(.head):hover{background:var(--panel);}
+  .cs-row div{padding:26px 20px;font-size:14px;}
+  .cs-num{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  .cs-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.03em;text-transform:uppercase;}
+  .cs-desc{color:var(--slate);font-size:14px;line-height:1.6;}
+  .cs-tag{color:var(--slate);font-size:11px;text-align:right;}
+
+  /* ===== Reel / Portfolio ===== */
+  .reel{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+  .reel-scroll{
+    display:flex;gap:2px;overflow-x:auto;padding-bottom:20px;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;scrollbar-color:var(--amber-dim) transparent;
+  }
+  .reel-scroll::-webkit-scrollbar{height:6px;}
+  .reel-scroll::-webkit-scrollbar-thumb{background:var(--amber-dim);}
+  .clip{
+    position:relative;flex:0 0 auto;width:300px;height:380px;
+    scroll-snap-align:start;overflow:hidden;background:#000;
+  }
+  .clip img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:grayscale(30%) brightness(0.85);}
+  .clip:hover img{transform:scale(1.06);filter:grayscale(0%) brightness(1);}
+  .clip::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(12,14,17,0.85) 0%, rgba(12,14,17,0) 45%);
+  }
+  .clip-label{
+    position:absolute;bottom:0;left:0;right:0;padding:16px;z-index:2;
+  }
+  .clip-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px;}
+  .clip-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.02em;text-transform:uppercase;}
+  .reel-hint{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:11px;color:var(--slate);}
+
+  /* ===== Photo Gallery (masonry) ===== */
+  .gallery{border-top:1px solid var(--line);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:200px;
+    grid-auto-flow:dense;
+    gap:6px;
+  }
+  .gclip{
+    position:relative;overflow:hidden;cursor:pointer;background:#0c0e11;
+  }
+  .gclip.tall{grid-row:span 2;}
+  .gclip.wide{grid-column:span 2;}
+  .gclip img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(20%) brightness(0.88);
+    transition:transform .5s ease, filter .3s ease;
+  }
+  .gclip::after{
+    content:'';position:absolute;inset:0;
+    border:1px solid rgba(242,239,233,0);
+    transition:border-color .2s ease;
+    pointer-events:none;
+  }
+  .gclip:hover img{transform:scale(1.05);filter:grayscale(0%) brightness(1);}
+  .gclip:hover::after{border-color:var(--amber);}
+  @media (max-width:860px){
+    .gallery-grid{grid-template-columns:repeat(2, 1fr);grid-auto-rows:160px;}
+  }
+  .clip{cursor:pointer;}
+  .play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:56px;height:56px;border-radius:50%;
+    background:rgba(20,23,28,0.55);border:1px solid rgba(242,239,233,0.4);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper);font-size:16px;z-index:2;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .clip:hover .play-btn{background:var(--amber);border-color:var(--amber);color:#14171c;transform:translate(-50%,-50%) scale(1.08);}
+
+  /* ===== Video modal ===== */
+  .video-modal{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(10,12,15,0.94);
+    display:none;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .video-modal.open{display:flex;}
+  .video-modal-inner{width:100%;max-width:960px;position:relative;}
+  .video-modal-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
+  .video-modal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-modal-close{
+    position:absolute;top:-46px;right:0;
+    background:none;border:1px solid var(--line);color:var(--paper);
+    width:36px;height:36px;font-size:15px;cursor:pointer;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .video-modal-close:hover{border-color:var(--amber);color:var(--amber);}
+
+  /* ===== CTA ===== */
+  .cta{
+    background:var(--amber);
+    color:#14171c;
+    text-align:center;
+    padding:130px 0;
+  }
+  .cta h2{font-size:clamp(40px,7vw,88px);text-transform:uppercase;color:#14171c;max-width:820px;margin:0 auto 28px;}
+  .cta p{font-size:16px;max-width:460px;margin:0 auto 40px;color:rgba(20,23,28,0.75);}
+  .cta .btn{background:#14171c;color:var(--paper);border-color:#14171c;}
+  .cta .btn:hover{background:transparent;color:#14171c;}
+
+  /* ===== Footer ===== */
+  footer{padding:56px 0 40px;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;}
+  .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .footer-links a{font-size:13px;color:var(--slate);transition:color .2s ease;}
+  .footer-links a:hover{color:var(--amber);}
+  .footer-bottom{
+    margin-top:50px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;color:var(--slate);font-size:12px;flex-wrap:wrap;gap:10px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    .navlinks .link{display:none;}
+    .about-grid{grid-template-columns:1fr;}
+    .cs-row{grid-template-columns:44px 1fr;}
+    .cs-row div:nth-child(3),.cs-row div:nth-child(4){grid-column:2;padding-top:0;}
+    .cs-row.head{display:none;}
+    .cs-row{padding:18px 0;}
+    .hero-meta{gap:24px;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">NICK W. GARCIA</a>
+      <div class="navlinks">
+        <a href="#about" class="link">About</a>
+        <a href="#work" class="link">Work</a>
+        <a href="#services" class="link">Services</a>
+        <a href="#contact" class="btn">Book Now</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="letterbox-top"></div>
+  <div class="letterbox-bottom"></div>
+  <div class="hero-bg"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow mono">Video &amp; Photo for Skilled Trades · Los Angeles</div>
+    <h1>Branding that reflects the <em>quality</em> of your craft.</h1>
+    <p class="hero-sub">Professional visuals turn a basic service into a trusted brand. High-quality photo and video prove your legitimacy and tell your story at a glance.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn">Get a Quote</a>
+      <a href="#work" class="btn btn-outline">See the Work</a>
+    </div>
+  </div>
+  <div class="wrap hero-meta">
+    <div>Based in<strong>Los Angeles, CA</strong></div>
+    <div>Focus<strong>HVAC · Solar · Construction · ADU</strong></div>
+    <div>Formats<strong>Video Ads · Testimonials · Tutorials · Photo</strong></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/69c9c242363ac14fde4e6078/9e89ccc2-d2b0-4f40-a0cc-ea2dd1888754/IMG_9651.jpeg" alt="Nick W. Garcia">
+      <div class="frame-tag mono">Nick — Director / DP</div>
+    </div>
+    <div class="about-body reveal">
+      <div class="section-tag mono">About</div>
+      <h2 class="section-title" style="margin-bottom:26px;">Bay Area roots. <br>LA-built career.</h2>
+      <p>For years, I've partnered with LA's skilled trades and local brands to elevate their digital presence — from targeted video ads to powerful customer testimonials, built to establish trust and authority.</p>
+      <p class="dim">I keep things professional, but I'm just a normal guy. My family's from the Bay Area; I moved to LA to chase it like everyone else, and built a small family of friends who make the city feel like home. I'd still like to be more than the uncle who only shows up for Christmas — so hiring me helps me get back up north a little more often.</p>
+      <div class="about-stats">
+        <div><strong>20+</strong><span class="mono">Brands Served</span></div>
+        <div><strong>LA</strong><span class="mono">Metro &amp; Beyond</span></div>
+        <div><strong>Video+Photo</strong><span class="mono">Full Service</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-tag mono">Services</div>
+        <h2 class="section-title">Tailored visual strategies.</h2>
+      </div>
+      <p class="section-desc">A collection of marketing tactics that adapt to the platform and the mission — whether it's building trust through tutorials or driving action with video ads.</p>
+    </div>
+    <div class="callsheet reveal">
+      <div class="cs-row head mono">
+        <div>No.</div><div>Service</div><div>What it does</div><div>Format</div>
+      </div>
+      <div class="cs-row">
+        <div class="cs-num">01</div>
+        <div class="cs-title">Video Ads</div>
+        <div class="cs-desc">Short, targeted spots built to drive action across paid social and search.</div>
+        <div class="cs-tag mono">15–60s</div>
+      </div>
+      <div class="cs-row">
+        <div class="cs-num">02</div>
+        <div class="cs-title">Customer Testimonials</div>
+        <div class="cs-desc">Real clients, on camera, making the case for your business better than any ad copy can.</div>
+        <div class="cs-tag mono">Interview</div>
+      </div>
+      <div class="cs-row">
+        <div class="cs-num">03</div>
+        <div class="cs-title">Tutorials &amp; How-Tos</div>
+        <div class="cs-desc">Educational content that builds trust by showing your expertise in action.</div>
+        <div class="cs-tag mono">Long-form</div>
+      </div>
+      <div class="cs-row">
+        <div class="cs-num">04</div>
+        <div class="cs-title">Brand Photography</div>
+        <div class="cs-desc">Crew, jobsite, and product photography for your site, proposals, and socials.</div>
+        <div class="cs-tag mono">Stills</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reel" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-tag mono">Selected Work</div>
+        <h2 class="section-title">The reel.</h2>
+      </div>
+      <p class="section-desc">Recent video work — click to play.</p>
+    </div>
+    <div class="reel-scroll reveal" id="reelScroll">
+      <div class="clip" data-yt="Oa9L2Fp9xRE">
+        <img src="https://img.youtube.com/vi/Oa9L2Fp9xRE/hqdefault.jpg" alt="Soonish Branding" loading="lazy">
+        <div class="play-btn">▶</div>
+        <div class="clip-label"><div class="clip-num mono">Clip 01/04</div><div class="clip-name">Soonish Branding</div></div>
+      </div>
+      <div class="clip" data-yt="jvVoVHiYnPs">
+        <img src="https://img.youtube.com/vi/jvVoVHiYnPs/hqdefault.jpg" alt="ADU Masters Video Ad" loading="lazy">
+        <div class="play-btn">▶</div>
+        <div class="clip-label"><div class="clip-num mono">Clip 02/04</div><div class="clip-name">ADU Masters Video Ad</div></div>
+      </div>
+      <div class="clip" data-yt="U91kAm9W8fM">
+        <img src="https://img.youtube.com/vi/U91kAm9W8fM/hqdefault.jpg" alt="Purple Lead Generation" loading="lazy">
+        <div class="play-btn">▶</div>
+        <div class="clip-label"><div class="clip-num mono">Clip 03/04</div><div class="clip-name">Purple Lead Generation</div></div>
+      </div>
+      <div class="clip" data-yt="gPxIIrW-GxQ">
+        <img src="https://img.youtube.com/vi/gPxIIrW-GxQ/hqdefault.jpg" alt="Calixto Tutorial" loading="lazy">
+        <div class="play-btn">▶</div>
+        <div class="clip-label"><div class="clip-num mono">Clip 04/04</div><div class="clip-name">Calixto Tutorial</div></div>
+      </div>
+    </div>
+    <div class="reel-hint mono">
+      <span>← Scroll to browse →</span>
+      <span>Full portfolio available on request</span>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-tag mono">Photography</div>
+        <h2 class="section-title">On location.</h2>
+      </div>
+      <p class="section-desc">Stills from recent jobsites, brand shoots, and client work — click to view.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gclip tall" data-img="images/GirlHaus_Event-05.jpg"><img src="images/GirlHaus_Event-05.jpg" alt="GirlHaus Event" loading="lazy"></div>
+      <div class="gclip" data-img="images/ADUMasters-12.jpg"><img src="images/ADUMasters-12.jpg" alt="ADU Masters" loading="lazy"></div>
+      <div class="gclip" data-img="images/CloudComfort-04.jpg"><img src="images/CloudComfort-04.jpg" alt="Cloud Comfort HVAC" loading="lazy"></div>
+      <div class="gclip" data-img="images/KilowattSolar-5.jpg"><img src="images/KilowattSolar-5.jpg" alt="Kilowatt Solar" loading="lazy"></div>
+      <div class="gclip wide" data-img="images/Partner_Construction-32.jpg"><img src="images/Partner_Construction-32.jpg" alt="Partner Construction" loading="lazy"></div>
+      <div class="gclip" data-img="images/BlueHome_Orange-19.jpg"><img src="images/BlueHome_Orange-19.jpg" alt="Blue Home" loading="lazy"></div>
+      <div class="gclip" data-img="images/NextLevelEnergy-04.jpg"><img src="images/NextLevelEnergy-04.jpg" alt="Next Level Energy" loading="lazy"></div>
+      <div class="gclip" data-img="images/CoveredByTerm_ClientInteraction_Images-13.jpg"><img src="images/CoveredByTerm_ClientInteraction_Images-13.jpg" alt="Covered By Term" loading="lazy"></div>
+      <div class="gclip tall" data-img="images/GirlHaus_Event-41.jpg"><img src="images/GirlHaus_Event-41.jpg" alt="GirlHaus Event" loading="lazy"></div>
+      <div class="gclip" data-img="images/Paxton_Sales-4_NoLogo.jpg"><img src="images/Paxton_Sales-4_NoLogo.jpg" alt="Paxton Sales" loading="lazy"></div>
+      <div class="gclip" data-img="images/ADUMasters-3.jpg"><img src="images/ADUMasters-3.jpg" alt="ADU Masters" loading="lazy"></div>
+      <div class="gclip wide" data-img="images/BlueHouse_Week01A_ProjectAfter-2.jpg"><img src="images/BlueHouse_Week01A_ProjectAfter-2.jpg" alt="Blue House" loading="lazy"></div>
+      <div class="gclip" data-img="images/KilowattSolar-7.jpg"><img src="images/KilowattSolar-7.jpg" alt="Kilowatt Solar" loading="lazy"></div>
+      <div class="gclip" data-img="images/SmartControlHVAC-16.jpg"><img src="images/SmartControlHVAC-16.jpg" alt="Smart Control HVAC" loading="lazy"></div>
+      <div class="gclip" data-img="images/CoveredByTerm_ClientInteraction_Images-20.jpg"><img src="images/CoveredByTerm_ClientInteraction_Images-20.jpg" alt="Covered By Term" loading="lazy"></div>
+      <div class="gclip" data-img="images/Partner_Construction-11.jpg"><img src="images/Partner_Construction-11.jpg" alt="Partner Construction" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Close video">✕</button>
+    <div class="video-modal-frame" id="videoModalFrame"></div>
+  </div>
+</div>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="section-tag mono" style="color:#14171c;">Let's Talk</div>
+    <h2>Ready to make<br>your brand look<br>as good as your work?</h2>
+    <p>Tell me about your business and what you're trying to promote — I'll put together a plan and a quote.</p>
+    <a href="mailto:nickgarciafilms@gmail.com" class="btn">Email Nick →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="logo">NICK W. GARCIA</div>
+      <div class="footer-links mono">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="mailto:nickgarciafilms@gmail.com">Email</a>
+        <a href="https://www.instagram.com/nickwgarcia" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@nickwgarcia" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>nickwgarcia.com</span>
+      <span>Los Angeles, CA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Video / photo modal
+  const modal = document.getElementById('videoModal');
+  const modalFrame = document.getElementById('videoModalFrame');
+  const modalClose = document.getElementById('videoModalClose');
+
+  function openVideo(id){
+    modalFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function openImage(src, alt){
+    modalFrame.innerHTML = `<img src="${src}" alt="${alt}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">`;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideo(){
+    modal.classList.remove('open');
+    modalFrame.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.clip[data-yt]').forEach(clip => {
+    clip.addEventListener('click', () => openVideo(clip.getAttribute('data-yt')));
+  });
+  document.querySelectorAll('.gclip[data-img]').forEach(clip => {
+    clip.addEventListener('click', () => {
+      const img = clip.querySelector('img');
+      openImage(clip.getAttribute('data-img'), img ? img.alt : '');
+    });
+  });
+  modalClose.addEventListener('click', closeVideo);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeVideo(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeVideo(); });
+</script>
+
+</body>
+</html>
